@@ -3,11 +3,13 @@ import 'package:get/get.dart';
 class DataController extends GetxController {
   var selectedUser = 0.obs;
   var users = <User>[].obs;
+  var policies = <Policy>[].obs;
 
   @override
   void onInit() {
     super.onInit();
     fetchUsers();
+    fetchPolicy();
   }
 
   void fetchUsers() {
@@ -18,6 +20,22 @@ class DataController extends GetxController {
       Student(name: '이학생', role: '학생', id: 3, permission: false, courses: ['소프트웨어공학','컴퓨터구조'], grades: {'소프트웨어공학':90, '컴퓨터구조':80})
     ]);
   }
+
+  void fetchPolicy(){
+    policies.assignAll([
+      Policy(title: '소프트웨어공학', grades: {'A+': 10, 'A': 25, 'B+': 20, 'B': 20, 'C+': 15, 'C': 10}, show: false),
+      Policy(title: '컴퓨터구조', grades: {'A+': 12, 'A': 23, 'B+': 25, 'B': 15, 'C+': 15, 'C': 10}, show: false),
+    ]);
+  }
+
+  int calculateRate(Policy subject){
+    int total = 0;
+    subject.grades.forEach((key, value) {
+      total += value;
+    });
+    return total;
+  }
+
   void changeRole(int role) {
     selectedUser.value = role;
   }
@@ -63,5 +81,13 @@ class Student extends User {
     required List<String> courses,
     required this.grades,
   }) : super(name: name, role: role, id: id, permission: permission, courses: courses);
+}
+
+class Policy{
+  String title;
+  Map<String, int> grades;
+  bool show;
+
+  Policy({required this.title, required this.grades, required this.show});
 }
 

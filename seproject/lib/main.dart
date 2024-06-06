@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:seproject/dataController.dart';
+import 'package:seproject/policy.dart';
 import 'package:seproject/scoreControl.dart';
 
 void main() {
@@ -97,6 +98,7 @@ class _MyHomePageState extends State<MyHomePage> {
             SizedBox(height: 20),
             ElevatedButton(onPressed: (){
               if(myController.users[myController.selectedUser.value].role == '교수'){
+                Get.to(PolicyPage());
 
               }
               else{
