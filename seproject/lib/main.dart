@@ -10,7 +10,7 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       home: MyHomePage(),
     );
   }
@@ -29,7 +29,8 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('성적 시스템'),
+        backgroundColor: Color(0xFF1D43A9),
+        title: Center(child: Text('중앙대학교 성적 시스템',style: TextStyle(fontSize: 40,fontWeight: FontWeight.bold,color: Colors.white),)),
       ),
       body: Center(
         child: Column(
@@ -66,7 +67,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             SizedBox(height: 20),
             Text(
-              '선택된 역할: $_selectedRole',
+              '선택된 사용자: $_selectedRole',
               style: TextStyle(fontSize: 16),
             ),
             SizedBox(height: 20),
@@ -80,9 +81,19 @@ class _MyHomePageState extends State<MyHomePage> {
                 });
               }
               else{
-                  Get.to(scoreControl());
+                  Get.to(CourseListPage());
               }
-            }, child: Text("성적 관리")),
+            }, child: Text("성적 관리",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 20),),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Color(0xFF1D43A9), // 버튼 색상
+                elevation: 5, // 그림자 깊이
+                padding: EdgeInsets.symmetric(horizontal: 30, vertical: 20), // 내부 여백
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10), // 버튼 모서리를 둥글게 만듦
+                ),
+
+              ),
+            ),
             SizedBox(height: 20),
             ElevatedButton(onPressed: (){
               if(myController.users[myController.selectedUser.value].role == '교수'){
@@ -97,12 +108,30 @@ class _MyHomePageState extends State<MyHomePage> {
                 });
               }
 
-            }, child: Text("정책 설정")),
+            }, child: Text("정책 설정",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 20),),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Color(0xFF1D43A9), // 버튼 색상
+                  elevation: 5, // 그림자 깊이
+                  padding: EdgeInsets.symmetric(horizontal: 30, vertical: 20), // 내부 여백
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10), // 버튼 모서리를 둥글게 만듦
+                  ),
+
+                )),
             SizedBox(height: 20),
             ElevatedButton(onPressed: (){
 
 
-            }, child: Text("성적 조회")),
+            }, child: Text("성적 조회",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 20),),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Color(0xFF1D43A9), // 버튼 색상
+                  elevation: 5, // 그림자 깊이
+                  padding: EdgeInsets.symmetric(horizontal: 30, vertical: 20), // 내부 여백
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10), // 버튼 모서리를 둥글게 만듦
+                  ),
+
+                )),
             SizedBox(height: 20),
             ElevatedButton(onPressed: (){
               if(myController.users[myController.selectedUser.value].role == '교수'){
@@ -112,7 +141,16 @@ class _MyHomePageState extends State<MyHomePage> {
 
               }
 
-            }, child: Text("이의 신청")),
+            }, child: Text("이의 신청",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 20),),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor:Color(0xFF1D43A9), // 버튼 색상
+                  elevation: 5, // 그림자 깊이
+                  padding: EdgeInsets.symmetric(horizontal: 30, vertical: 20), // 내부 여백
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10), // 버튼 모서리를 둥글게 만듦
+                  ),
+
+                )),
           ],
         ),
       ),
