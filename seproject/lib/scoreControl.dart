@@ -142,11 +142,24 @@ class _GradeEditPageState extends State<GradeEditPage> {
             SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                setState(() {
-                  var newGrade = double.tryParse(_controller.text) ?? 0.0;
-                  myController.updateGrade(widget.student.id, widget.courseName, newGrade);
-                });
-                Get.back();
+                if(_controller.text.isNumericOnly == false){
+                  showDialog(context: context, builder: (context){
+                    return AlertDialog(
+                      content: Text("숫자만 입력 가능합니다."),
+                    );
+                  });
+                  return;
+                }
+                else{
+                  setState(() {
+
+                    var newGrade = double.tryParse(_controller.text) ?? 0.0;
+                    myController.updateGrade(widget.student.id, widget.courseName, newGrade);
+
+                  });
+                  Get.back();
+                }
+
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Color(0xFF1D43A9),
